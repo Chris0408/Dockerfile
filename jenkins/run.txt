@@ -1,0 +1,8 @@
+docker run --name myjenkins -d -p 8081:8080 -p 50000:50000 -v /var/jenkins:/var/jenkins auto-jenkins
+
+–name myjenkins 表示为运行的docker容器命名myjenkins
+-d 表示用后台执行命令
+-p 8081:8080 将Jenkins容器的8080端口映射至宿主机的8081端口，必须映射容器的8080端口到宿主机，考虑到宿主机8080端口可能被占用，所以这里映射到了8081端口，记住这个端口将用于对Jenkins的访问
+-p 50000:50000 将Jenkins容器的50000端口映射至宿主机的50000端口，必须映射容器的50000端口到宿主机
+-v /var/jenkins:/var/jenkins 将Jenkins容器的home目录作为卷挂载到宿主机 /var/jenkins 目录，jenkins容器的所有配置、工作信息都会存放在这里。也可以挂载到宿主机的其他目录，不过需要注意权限问题
+auto-jenkins 表示从我们创建的名为auto-jenkins的镜像启动容器
